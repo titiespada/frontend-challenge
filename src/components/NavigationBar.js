@@ -3,16 +3,16 @@ import logo from '../logo.svg';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
-import '../App.css';
+import '../css/style.css';
 
 class NavigationBar extends Component {
   render() {
     return (
-      <Navbar inverse fixedTop collapseOnSelect className="App-navbar">
+      <Navbar inverse fixedTop collapseOnSelect className="navigation-bar">
         <Navbar.Header>
           <Navbar.Brand>
-              <a href="#brand" className="App-brand-link">
-                  <img src={logo} width="30" height="30" className="App-logo" alt="" />
+              <a href="#brand" className="brand-link">
+                  <img src={logo} width="30" height="30" className="logo" alt="" />
                   Computer-System
               </a>
           </Navbar.Brand>
@@ -20,7 +20,7 @@ class NavigationBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-              <NavItem eventKey={1} href="https://github.com/titiespada/frontend-challenge" className="App-github">  
+              <NavItem eventKey={1} href="https://github.com/titiespada/frontend-challenge" className="github">  
                 Git Hub
                 <FontAwesome className="super-crazy-colors" name='external-link' />
               </NavItem>

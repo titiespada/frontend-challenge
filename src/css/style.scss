@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+
+.navigation-bar {
+  border-radius: 0;
+  background-image: none;
+
+  .brand-link {
+    display: inline-block;
+    color: #61dafb !important;
+  }
+
+  .logo {
+    display: inline-block !important;
+  }
+
+  .github {
+    a:hover {
+      color: #61dafb !important;
+    }
+
+    span {
+      margin-left: 5px;
+    }
+  }
+}
+
+
+.main-header {
+  margin-top: 80px;
+  height: 150px;
+  text-align: center;
+
+  .page-header {
+    border-bottom: 0;
+  }
+}
+
+
+.main-content {
+  background-color: #f8f9fa!important;
+}

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import '../App.css';
+import '../css/style.css';
 
 class MainContent extends Component {
   render() {
     return (
-      <Grid bsClass="App-main-content">
+      <Grid bsClass="main-content">
         <Row></Row>
         <Row>
           <Col mdOffset={2} md={8}>
