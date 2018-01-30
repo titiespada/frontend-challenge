@@ -22,7 +22,7 @@ class NavigationBar extends Component {
           <Nav pullRight>
               <NavItem eventKey={1} href="https://github.com/titiespada/frontend-challenge" className="github">  
                 Git Hub
-                <FontAwesome className="super-crazy-colors" name='external-link' />
+                <FontAwesome name='external-link' />
               </NavItem>
           </Nav>
         </Navbar.Collapse>

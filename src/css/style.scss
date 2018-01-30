@@ -1,17 +1,20 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   font-family: sans-serif;
 }
 
-
 .navigation-bar {
+  background-color: #172b35;
+  border-color: #172b35;
   border-radius: 0;
   background-image: none;
 
   .brand-link {
     display: inline-block;
-    color: #61dafb !important;
+    color: #ff4955 !important;
   }
 
   .logo {
@@ -20,7 +23,7 @@ body {
 
   .github {
     a:hover {
-      color: #61dafb !important;
+      color: #ff4955 !important;
     }
 
     span {
@@ -29,18 +32,66 @@ body {
   }
 }
 
-
-.main-header {
-  margin-top: 80px;
-  height: 150px;
+.page-header {
   text-align: center;
-
-  .page-header {
-    border-bottom: 0;
+  padding-top: 65px;
+  background-color: #2d2d2d;
+  border-bottom: 0;
+  margin-bottom: 0;
+  h1, small {
+    color: white;
   }
 }
 
 
 .main-content {
-  background-color: #f8f9fa!important;
+  padding-top: 20px;
+  background-color: #f9f9f9 !important;
+
+  .react-bs-table-container {
+    .react-bs-table {
+      background-color: white;
+    }
+    
+    .react-bs-table-expand-cell {
+      text-align: center;
+    }
+
+    .react-bs-table table tr th {
+      color: #34b7b6;
+    }
+
+    .react-bs-table table td, .react-bs-table table th {
+      white-space: pre-line;
+      text-overflow: unset;
+      overflow-wrap: break-word;
+    }
+
+    .expand-row-container {
+      background-color: #f8f9fa;
+      .expand-header {
+        font-weight: bold;
+      }
+    }
+  
+    .expand-minimize-btn {
+      color: #34b7b6;
+    }
+  
+    .react-bootstrap-table-page-btns-ul {
+      .active.page-item a.page-link {
+        background-color: #34b7b6;
+        border-color: #34b7b6;
+        color: #fff;
+      }
+    }
+  
+    .pagination > li > a, .pagination > li > span {
+      color: #34b7b6;
+    }
+  
+    .pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+      color: #34b7b6;
+    }
+  }
 }
