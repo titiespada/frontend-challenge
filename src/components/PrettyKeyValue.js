@@ -5,8 +5,15 @@ import '../css/style.css';
 
 var dateAttributes = ["last_boot", "channels_changed", "created", "modified"];
 
+/**
+ * This component allows displaying JSON key:value pairs into readable label value HTML format.
+ */
 class PrettyKeyValue extends Component {
 
+	/**
+	 * Format a key by removing underscores and changing each first letter of each word uppercase.
+	 * @param string key 
+	 */
 	formatKey(key) {
 		key = key.replace(/_/g, ' ');
 
@@ -15,6 +22,12 @@ class PrettyKeyValue extends Component {
     	}).join(' ');
 	};
 
+	/**
+	 * Render the key:value pairs into more readable HTML format
+	 * @param string key 
+	 * @param object value Can be a string, array or object
+	 * @param int level Indicator of what is the level of identation to be presented
+	 */
 	renderKeyValue(key, value, level) {
 		if (value instanceof Array) {
 			if (value.length === 1 && value[0] instanceof Object) {

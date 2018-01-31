@@ -4,8 +4,17 @@ import PrettyKeyValue from './PrettyKeyValue';
 import '../css/style.css';
 import jsonAdditionalDetails from '../static/system-details.json';
 
-class RowAdditionalDetails extends Component {
+/**
+ * Component to display the additional details of the selected computer system.
+ */
+class ComputerSysMoreDetails extends Component {
 
+	/**
+	 * Render some of the details
+	 * @param object details 
+	 * @param int from 
+	 * @param int to 
+	 */
 	renderFragment(details, from, to) {
 		return Object.keys(details).map(function(key, index) {
 			if (index >= from && index < to) {
@@ -46,4 +55,4 @@ class RowAdditionalDetails extends Component {
 	}
 }
 
-export default RowAdditionalDetails;
+export default ComputerSysMoreDetails;

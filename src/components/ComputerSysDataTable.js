@@ -4,14 +4,25 @@ import Moment from 'react-moment';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import '../css/style.css';
 
-class DataTable extends Component {
+/**
+ * Component to display a datatable with all computer systems.
+ */
+class ComputerSysDataTable extends Component {
 
+	/**
+	 * Format a Date element from the datatable.
+	 * @param int cell 
+	 * @param object row 
+	 */
 	tableDateFormat(cell, row) {
 		return (
 			<Moment format="YYYY-MM-DD HH:mm" date={ new Date(cell) } />
 		);
 	};
 
+	/**
+	 * Handle the selection of a row.
+	 */
 	onRowSelect = (row, isSelected, e) => {
 		this.props.callbackFromParent(isSelected, row);
 	};
@@ -79,4 +90,4 @@ class DataTable extends Component {
   }
 }
 
-export default DataTable;
+export default ComputerSysDataTable;

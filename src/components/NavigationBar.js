@@ -5,6 +5,9 @@ import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
 import '../css/style.css';
 
+/**
+ * Create the navigation bar.
+ */
 class NavigationBar extends Component {
   render() {
     return (

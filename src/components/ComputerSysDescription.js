@@ -3,8 +3,17 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import PrettyKeyValue from './PrettyKeyValue';
 import '../css/style.css';
 
-class RowDescription extends Component {
+/**
+ * Component responsible to present the basic information of the selected computer system.
+ */
+class ComputerSysDescription extends Component {
 
+	/**
+	 * Render some of the details
+	 * @param object details 
+	 * @param int from 
+	 * @param int to 
+	 */
 	renderFragment(computerSystem, from, to) {
 		return Object.keys(computerSystem).map(function(key, index) {
 			if (index >= from && index < to) {
@@ -30,4 +39,4 @@ class RowDescription extends Component {
 	}
 }
 
-export default RowDescription;
+export default ComputerSysDescription;
