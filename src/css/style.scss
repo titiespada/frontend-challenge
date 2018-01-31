@@ -4,6 +4,7 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   font-family: sans-serif;
+  background-color: #f9f9f9;
 }
 
 .navigation-bar {
@@ -35,6 +36,7 @@ html, body {
 .page-header {
   text-align: center;
   padding-top: 65px;
+  padding-bottom: 60px;
   background-color: #2d2d2d;
   border-bottom: 0;
   margin-bottom: 0;
@@ -46,7 +48,7 @@ html, body {
 
 .main-content {
   padding-top: 20px;
-  background-color: #f9f9f9 !important;
+  padding-bottom: 50px;
 
   .react-bs-table-container {
     .react-bs-table {
@@ -66,17 +68,6 @@ html, body {
       text-overflow: unset;
       overflow-wrap: break-word;
     }
-
-    .expand-row-container {
-      background-color: #f8f9fa;
-      .expand-header {
-        font-weight: bold;
-      }
-    }
-  
-    .expand-minimize-btn {
-      color: #34b7b6;
-    }
   
     .react-bootstrap-table-page-btns-ul {
       .active.page-item a.page-link {
@@ -86,12 +77,42 @@ html, body {
       }
     }
   
-    .pagination > li > a, .pagination > li > span {
+    .pagination > li > a,
+    .pagination > li > span {
       color: #34b7b6;
     }
   
-    .pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+    .pagination > li > a:hover,
+    .pagination > li > span:hover,
+    .pagination > li > a:focus,
+    .pagination > li > span:focus {
       color: #34b7b6;
+    }
+  }
+
+  .row-container-tabs {
+    ul.nav-tabs > li:not(.active) > a {
+      color: #34b7b6;
+    }
+    div.tab-content {
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+
+      .row-description {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: small;
+        white-space: pre-line;
+        text-overflow: unset;
+        overflow-wrap: break-word;
+        
+        .row-description-header {
+          font-weight: bold;
+          text-align: right;
+        }
+      }
     }
   }
 }
