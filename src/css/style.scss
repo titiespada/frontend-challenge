@@ -1,21 +1,30 @@
+$page-background-color: #f9f9f9;
+$nav-bar-color: #172b35;
+$nav-bar-text-color: #ff4955;
+$header-background-color: #2d2d2d;
+$highlight-color: #34b7b6;
+$tab-border-color: #dddddd;
+$padding-row-detail: 20px;
+
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-x: hidden;
   font-family: sans-serif;
-  background-color: #f9f9f9;
+  background-color: $page-background-color;
 }
 
 .navigation-bar {
-  background-color: #172b35;
-  border-color: #172b35;
+  background-color: $nav-bar-color;
+  border-color: $nav-bar-color;
   border-radius: 0;
   background-image: none;
 
   .brand-link {
     display: inline-block;
-    color: #ff4955 !important;
+    color: $nav-bar-text-color !important;
   }
 
   .logo {
@@ -24,7 +33,7 @@ html, body {
 
   .github {
     a:hover {
-      color: #ff4955 !important;
+      color: $nav-bar-text-color !important;
     }
 
     span {
@@ -37,7 +46,7 @@ html, body {
   text-align: center;
   padding-top: 25px;
   padding-bottom: 25px;
-  background-color: #2d2d2d;
+  background-color: $header-background-color;
   border-bottom: 0;
   margin-bottom: 0;
   h1, small {
@@ -50,24 +59,23 @@ html, body {
   padding-top: 20px;
   padding-bottom: 50px;
 
-  .w-100 {
-    width: 100%!important;
-  }
-
   .pretty-key-value {
     font-size: small;
     white-space: pre-line;
     text-overflow: unset;
     overflow-wrap: break-word;
     padding-bottom: 10px;
+
     .pretty-key-value-label-0 {
       font-weight: bold;
       text-align: right;
     }
+
     .pretty-key-value-label-1 {
       text-decoration: underline;
       text-align: right;
     }
+
     .pretty-key-value-list {
       padding-left: 0px;
     }
@@ -83,7 +91,7 @@ html, body {
     }
 
     .react-bs-table table tr th {
-      color: #34b7b6;
+      color: $highlight-color;
     }
 
     .react-bs-table table td, .react-bs-table table th {
@@ -94,53 +102,49 @@ html, body {
   
     .react-bootstrap-table-page-btns-ul {
       .active.page-item a.page-link {
-        background-color: #34b7b6;
-        border-color: #34b7b6;
-        color: #fff;
+        background-color: $highlight-color;
+        border-color: $highlight-color;
+        color: white;
       }
     }
   
     .pagination > li > a,
     .pagination > li > span {
-      color: #34b7b6;
+      color: $highlight-color;
     }
   
     .pagination > li > a:hover,
     .pagination > li > span:hover,
     .pagination > li > a:focus,
     .pagination > li > span:focus {
-      color: #34b7b6;
+      color: $highlight-color;
     }
   }
 
   .row-container-tabs {
+
     ul.nav-tabs > li:not(.active) > a {
-      color: #34b7b6;
+      color: $highlight-color;
     }
+
     div.tab-content {
       background-color: white;
-      border-bottom: 1px solid #ddd;
-      border-left: 1px solid #ddd;
-      border-right: 1px solid #ddd;
+      border-bottom: 1px solid $tab-border-color;
+      border-left: 1px solid $tab-border-color;
+      border-right: 1px solid $tab-border-color;
 
-      .row-description {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: small;
-        white-space: pre-line;
-        text-overflow: unset;
-        overflow-wrap: break-word;
-        
-        .row-description-header {
-          font-weight: bold;
-          text-align: right;
-        }
-      }
-
-      .row-additional-details {
-        padding-top: 20px;
-        padding-bottom: 20px;
+      .row-description, .row-additional-details  {
+        padding-top: $padding-row-detail;
+        padding-bottom: $padding-row-detail;
       }
     }
+  }
+}
+
+$break-small: 768px;
+@media screen and (max-width: $break-small) {
+  .main-content .pretty-key-value .pretty-key-value-label-0,
+  .main-content .pretty-key-value .pretty-key-value-label-1 {
+    text-align: left;
   }
 }

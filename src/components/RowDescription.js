@@ -22,8 +22,8 @@ class RowDescription extends Component {
 		return (
 			<Grid className="row-description">
 				<Row>
-					<Col md={6}>{this.renderFragment(computerSystem, 0, splitIndex)}</Col>
-					<Col md={6}>{this.renderFragment(computerSystem, splitIndex, length)}</Col>
+					<Col sm={6} md={6}>{this.renderFragment(computerSystem, 0, splitIndex)}</Col>
+					<Col sm={6} md={6}>{this.renderFragment(computerSystem, splitIndex, length)}</Col>
 				</Row>
 			</Grid>
 		);

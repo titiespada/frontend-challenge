@@ -20,7 +20,7 @@ class PrettyKeyValue extends Component {
 			if (value.length === 1 && value[0] instanceof Object) {
 				return (
 					<Row key={key} className="pretty-key-value">
-						<Col md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
+						<Col xs={4} sm={4} md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
 						<br/>
 						{ Object.keys(value[0]).map(k =>  this.renderKeyValue(k, value[0][k], level+1)) }
 					</Row>
@@ -29,15 +29,15 @@ class PrettyKeyValue extends Component {
 				var valueArrStr = value.join(', ');
 				return (
 					<Row key={key} className="pretty-key-value">
-						<Col md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
-						<Col md={8}>{valueArrStr || '-'}</Col>
+						<Col xs={4} sm={4} md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
+						<Col xs={8} sm={8} md={8}>{valueArrStr || '-'}</Col>
 					</Row>
 				);
 			}
 		} else if (value instanceof Object) {
 			return (
 				<Row key={key} className="pretty-key-value">
-					<Col md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
+					<Col xs={4} sm={4} md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
 					<br/>
 					{ Object.keys(value).map(k =>  this.renderKeyValue(k, value[k], level+1)) }
 				</Row>
@@ -47,15 +47,15 @@ class PrettyKeyValue extends Component {
 			if (dateAttributes.includes(key)) {
 				return (
 					<Row key={key} className="pretty-key-value">
-						<Col md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
-						<Col md={8}><Moment format="YYYY-MM-DD HH:mm" date={ new Date(value) } /></Col>
+						<Col xs={4} sm={4} md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
+						<Col xs={8} sm={8} md={8}><Moment format="YYYY-MM-DD HH:mm" date={ new Date(value) } /></Col>
 					</Row>
 				);
 			} else {
 				return (
 					<Row key={key} className="pretty-key-value">
-						<Col md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
-						<Col md={8}>{value || '-'}</Col>
+						<Col xs={4} sm={4} md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
+						<Col xs={8} sm={8} md={8}>{value || '-'}</Col>
 					</Row>
 				);
 			}

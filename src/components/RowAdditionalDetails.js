@@ -25,7 +25,7 @@ class RowAdditionalDetails extends Component {
 			return (
 				<Grid>
 					<Row >
-						<Col className="row-additional-details">
+						<Col xsOffset={1} smOffset={1} mdOffset={1} className="row-additional-details">
 							<strong>No additional information found!</strong>
 						</Col>
 					</Row>
@@ -37,8 +37,8 @@ class RowAdditionalDetails extends Component {
 			return (
 				<Grid className="row-additional-details">
 					<Row>
-						<Col md={6}>{this.renderFragment(addDetails[rowId], 0, splitIndex)}</Col>
-						<Col md={6}>{this.renderFragment(addDetails[rowId], splitIndex, detailsLength)}</Col>
+						<Col sm={6} md={6}>{this.renderFragment(addDetails[rowId], 0, splitIndex)}</Col>
+						<Col sm={6} md={6}>{this.renderFragment(addDetails[rowId], splitIndex, detailsLength)}</Col>
 					</Row>
 				</Grid>
 			);
