@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-import Moment from 'react-moment';
+import moment from 'moment';
 import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import '../css/style.css';
 
@@ -11,13 +11,14 @@ class ComputerSysDataTable extends Component {
 
 	/**
 	 * Format a Date element from the datatable.
-	 * @param int cell 
+	 * @param string cell 
 	 * @param object row 
+	 * @param string formatExtraData
 	 */
-	tableDateFormat(cell, row) {
-		return (
-			<Moment format="YYYY-MM-DD HH:mm" date={ new Date(cell) } />
-		);
+	tableDateFormat(cell, row, formatExtraData) {
+		cell = moment(new Date(cell)).format("YYYY-MM-DD HH:mm");
+		row[formatExtraData] = cell;
+		return ( cell );
 	};
 
 	/**
@@ -77,14 +78,14 @@ class ComputerSysDataTable extends Component {
 					<TableHeaderColumn width='150' dataField='auto_update' dataSort>Auto Update</TableHeaderColumn>
 					<TableHeaderColumn width='200' dataField='contact_method_id' dataSort>Contact Method ID</TableHeaderColumn>
 					<TableHeaderColumn width='150' dataField='running_kernel' dataSort>Running Kernel</TableHeaderColumn>
-					<TableHeaderColumn width='130' dataField='last_boot' dataFormat={this.tableDateFormat} dataSort>Last Boot</TableHeaderColumn>
+					<TableHeaderColumn width='130' dataField='last_boot' dataFormat={this.tableDateFormat} formatExtraData={"last_boot"} dataSort>Last Boot</TableHeaderColumn>
 					<TableHeaderColumn width='160' dataField='provision_state_id' dataSort>Provision State ID</TableHeaderColumn>
-					<TableHeaderColumn width='170' dataField='channels_changed' dataFormat={this.tableDateFormat} dataSort>Channels Changed</TableHeaderColumn>
+					<TableHeaderColumn width='170' dataField='channels_changed' dataFormat={this.tableDateFormat} formatExtraData={"channels_changed"} dataSort>Channels Changed</TableHeaderColumn>
 					<TableHeaderColumn width='130' dataField='cobbler_id' dataSort>Cobbler ID</TableHeaderColumn>
 					<TableHeaderColumn width='200' dataField='machine_id' dataSort>Machine ID</TableHeaderColumn>
 					<TableHeaderColumn width='150' dataField='hostname' dataSort>Hostname</TableHeaderColumn>
-					<TableHeaderColumn width='130' dataField='created' dataFormat={this.tableDateFormat} dataSort>Created</TableHeaderColumn>
-					<TableHeaderColumn width='130' dataField='modified' dataFormat={this.tableDateFormat} dataSort>Modified</TableHeaderColumn>
+					<TableHeaderColumn width='130' dataField='created' dataFormat={this.tableDateFormat} formatExtraData={"created"} dataSort>Created</TableHeaderColumn>
+					<TableHeaderColumn width='130' dataField='modified' dataFormat={this.tableDateFormat} formatExtraData={"modified"} dataSort>Modified</TableHeaderColumn>
 			</BootstrapTable>
 		);
 	}

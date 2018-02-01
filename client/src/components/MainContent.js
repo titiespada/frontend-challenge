@@ -4,9 +4,13 @@ import ComputerSysContainer from './ComputerSysContainer';
 import { fetchAllComputerSystems } from '../js/ApiHelper';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { ClipLoader } from 'react-spinners';
+import { chartColors, getProvisionStateInfo } from '../js/ProvisionStateChartUtil';
+import rd3 from 'rd3';
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
 import '../css/style.css';
+
+const PieChart = rd3.PieChart;
 
 /**
  * Main component to display the application content.
@@ -74,16 +78,21 @@ class MainContent extends Component {
 
 		return (
 			<Grid bsClass="main-content">
-					<Row>
-						<Col mdOffset={1} md={10}>
-							<ComputerSysDataTable data={computerSystems} callbackFromParent={this.onRowSelectCallback} />
-						</Col>
-					</Row>
-					<Row>
-						<Col mdOffset={1} md={10}>
-							{this.state.isRowSelected ? <ComputerSysContainer data={this.state.row} /> : <strong>Select a computer system from the above table.</strong>}
-						</Col>
-					</Row>
+				<Row>
+					<Col className="provision-state-chart">
+						<PieChart data={getProvisionStateInfo(computerSystems)} width={450} height={400} radius={150} innerRadius={90} sectorBorderColor="white" colors={chartColors} />
+					</Col>
+				</Row>
+				<Row>
+					<Col mdOffset={1} md={10}>
+						<ComputerSysDataTable data={computerSystems} callbackFromParent={this.onRowSelectCallback} />
+					</Col>
+				</Row>
+				<Row>
+					<Col mdOffset={1} md={10}>
+						{this.state.isRowSelected ? <ComputerSysContainer data={this.state.row} /> : <strong>Select a computer system from the above table.</strong>}
+					</Col>
+				</Row>
 			</Grid>
 		);
   }

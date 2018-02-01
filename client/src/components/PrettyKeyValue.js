@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Moment from 'react-moment';
 import '../css/style.css';
-
-var dateAttributes = ["last_boot", "channels_changed", "created", "modified"];
 
 /**
  * This component allows displaying JSON key:value pairs into readable label value HTML format.
@@ -57,21 +54,12 @@ class PrettyKeyValue extends Component {
 			);
 		} 
 		else {
-			if (dateAttributes.includes(key)) {
-				return (
-					<Row key={key} className="pretty-key-value">
-						<Col xs={4} sm={4} md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
-						<Col xs={8} sm={8} md={8}><Moment format="YYYY-MM-DD HH:mm" date={ new Date(value) } /></Col>
-					</Row>
-				);
-			} else {
-				return (
-					<Row key={key} className="pretty-key-value">
-						<Col xs={4} sm={4} md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
-						<Col xs={8} sm={8} md={8}>{value || '-'}</Col>
-					</Row>
-				);
-			}
+			return (
+				<Row key={key} className="pretty-key-value">
+					<Col xs={4} sm={4} md={4} className={"pretty-key-value-label-"+level}>{this.formatKey(key)}:</Col>
+					<Col xs={8} sm={8} md={8}>{value || '-'}</Col>
+				</Row>
+			);
 		}
 	};
 
