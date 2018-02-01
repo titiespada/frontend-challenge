@@ -18,8 +18,8 @@ class PrettyKeyValue extends Component {
 		key = key.replace(/_/g, ' ');
 
 		return key.toLowerCase().split(' ').map(function(word) {
-        	return word[0].toUpperCase() + word.substr(1);
-    	}).join(' ');
+			return word[0].toUpperCase() + word.substr(1);
+		}).join(' ');
 	};
 
 	/**

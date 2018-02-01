@@ -26,7 +26,7 @@ class ComputerSysMoreDetails extends Component {
 	};
 
 	render() {
-    	const rowId = this.props.data;
+		const rowId = this.props.data;
 		const addDetails = jsonAdditionalDetails.return.find(function(obj) {
 			return obj[rowId] !== undefined;
 		});

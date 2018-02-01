@@ -32,21 +32,21 @@ class ComputerSysDataTable extends Component {
 		if (computerSystems == null) {
 			return null;
 		}
-    const tableOptions = {
-      noDataText: 'There are no computer systems available!',
+		const tableOptions = {
+			noDataText: 'There are no computer systems available!',
 			defaultSortName: 'id',
 			defaultSortOrder: 'asc',
-      sizePerPageList: [
+			sizePerPageList: [
 				{text: '5', value: 5},
 				{text: '10', value: 10},
 				{text: 'All', value: computerSystems.length}
 			],
-      sizePerPage: 5,
-      pageStartIndex: 1,
-      paginationSize: 3,
-      prePage: 'Prev',
-      nextPage: 'Next',
-      firstPage: 'First',
+			sizePerPage: 5,
+			pageStartIndex: 1,
+			paginationSize: 3,
+			prePage: 'Prev',
+			nextPage: 'Next',
+			firstPage: 'First',
 			lastPage: 'Last'
 		};
 		
@@ -57,7 +57,7 @@ class ComputerSysDataTable extends Component {
 			onSelect: this.onRowSelect
 		};
 
-    return (
+	return (
 			<BootstrapTable
 				data={computerSystems}
 				options={tableOptions}
@@ -86,8 +86,8 @@ class ComputerSysDataTable extends Component {
 					<TableHeaderColumn width='130' dataField='created' dataFormat={this.tableDateFormat} dataSort>Created</TableHeaderColumn>
 					<TableHeaderColumn width='130' dataField='modified' dataFormat={this.tableDateFormat} dataSort>Modified</TableHeaderColumn>
 			</BootstrapTable>
-    );
-  }
+		);
+	}
 }
 
 export default ComputerSysDataTable;

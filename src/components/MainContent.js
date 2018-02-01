@@ -29,20 +29,20 @@ class MainContent extends Component {
 
 	render() {
 		const computerSystems = this.props.data;
-    return (
-      <Grid bsClass="main-content">
-				<Row>
-					<Col mdOffset={1} md={10}>
-						<ComputerSysDataTable data={computerSystems} callbackFromParent={this.onRowSelectCallback} />
-					</Col>
-				</Row>
-				<Row>
-					<Col mdOffset={1} md={10}>
-						{this.state.isRowSelected ? <ComputerSysContainer data={this.state.row} /> : <strong>Select a computer system from the above table.</strong>}
-					</Col>
-				</Row>
-      </Grid>
-    );
+		return (
+			<Grid bsClass="main-content">
+					<Row>
+						<Col mdOffset={1} md={10}>
+							<ComputerSysDataTable data={computerSystems} callbackFromParent={this.onRowSelectCallback} />
+						</Col>
+					</Row>
+					<Row>
+						<Col mdOffset={1} md={10}>
+							{this.state.isRowSelected ? <ComputerSysContainer data={this.state.row} /> : <strong>Select a computer system from the above table.</strong>}
+						</Col>
+					</Row>
+			</Grid>
+		);
   }
 }
 
