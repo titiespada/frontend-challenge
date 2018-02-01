@@ -39,7 +39,7 @@ class ComputerSysDataTable extends Component {
 			sizePerPageList: [
 				{text: '5', value: 5},
 				{text: '10', value: 10},
-				{text: 'All', value: computerSystems.length}
+				{text: '50', value: 50}
 			],
 			sizePerPage: 5,
 			pageStartIndex: 1,

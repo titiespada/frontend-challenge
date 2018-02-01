@@ -16,7 +16,7 @@ class NavigationBar extends Component {
 					<Navbar.Brand>
 							<a href="#brand" className="brand-link">
 									<img src={logo} width="30" height="30" className="logo" alt="" />
-									Computer-System
+									Computer-Systems
 							</a>
 					</Navbar.Brand>
 					<Navbar.Toggle />

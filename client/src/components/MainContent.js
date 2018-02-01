@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import ComputerSysDataTable from './ComputerSysDataTable';
 import ComputerSysContainer from './ComputerSysContainer';
 import { Grid, Row, Col } from 'react-bootstrap';
+import { ClipLoader } from 'react-spinners';
+import FontAwesome from 'react-fontawesome';
+import 'font-awesome/css/font-awesome.css';
 import '../css/style.css';
 
 /**
@@ -11,9 +14,23 @@ class MainContent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			computerSystems: [],
+			isLoading: false,
 			isRowSelected: false,
 			row: null
 		};    
+	};
+
+	/**
+	 * Requests the server to grab the computer systems list.
+	 */
+	componentDidMount() {
+		this.setState({isLoading: true});
+	
+		fetch('http://localhost:8080/api')
+			.then(response => response.json())
+			.then(data => this.setState({status: 'success',computerSystems: data[0].systems, isLoading: false}))
+			.catch(error => this.setState({status: 'error', isLoading: false}));
 	};
 	
 	/**
@@ -28,7 +45,33 @@ class MainContent extends Component {
 	};
 
 	render() {
-		const computerSystems = this.props.data;
+		const {status, computerSystems, isLoading} = this.state;
+
+		if (isLoading) {
+			return (
+				<Grid bsClass="main-content">
+					<Row>
+						<Col className="loader">
+							<ClipLoader color={'#34b7b6'} size={100} loading={isLoading} />
+						</Col>
+					</Row>
+				</Grid>
+			);
+		}
+		if (status === 'error') {
+			return (
+				<Grid bsClass="main-content">
+					<Row>
+						<Col className="loader">
+							<FontAwesome className="loader-error" name='exclamation-circle' size='5x' />
+							<br/>
+							<strong>Oops! Something went wrong.</strong>
+						</Col>
+					</Row>
+				</Grid>
+			);
+		}
+
 		return (
 			<Grid bsClass="main-content">
 					<Row>
