@@ -2,11 +2,8 @@ package com.suse.frontendchallenge.controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
  * Controller responsible to deal with requests to the computer system api.
@@ -36,15 +34,27 @@ public class ComputerSystemsController {
 
 	@Autowired
 	private ResourceLoader resourceLoader;
+	
+	private static final String[] STATES = {"pending", "running", "stopped"};
 
 	@GetMapping
 	@CrossOrigin(origins = {"http://localhost:3000"})
 	public ResponseEntity<String> getComputerSystems() throws IOException {
-		LOGGER.debug("Get all computer systems");
-		InputStream in = resourceLoader.getResource("classpath:json/systems-long-list.json").getInputStream();
-		StringWriter writer = new StringWriter();
-		IOUtils.copy(in, writer, StandardCharsets.UTF_8);
-		return new ResponseEntity<>(writer.toString(), HttpStatus.OK);
+		String detailsStr = "{}";
+		ObjectMapper objectMapper = new ObjectMapper();
+		try (FileInputStream fis = new FileInputStream(resourceLoader.getResource("classpath:json/systems-long-list.json").getFile())) {
+			JsonNode allDetails = objectMapper.readTree(fis);
+			for (JsonNode node: allDetails.get(0).get("systems")) {
+				((ObjectNode) node).put("provision_state_id", generateRandomState());
+			}
+			detailsStr = objectMapper.writeValueAsString(allDetails);
+		}
+		return new ResponseEntity<>(detailsStr, HttpStatus.OK);
+	}
+	
+	private String generateRandomState() {
+		int idx = new Random().nextInt(STATES.length);
+		return STATES[idx];
 	}
 
 	@GetMapping(value="{id}")
