@@ -29,7 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  */
 @RestController
-@RequestMapping(path = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ComputerSystemsController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ComputerSystemsController.class);
@@ -47,11 +47,11 @@ public class ComputerSystemsController {
 		return new ResponseEntity<>(writer.toString(), HttpStatus.OK);
 	}
 
-	@GetMapping(value="/{id}")
+	@GetMapping(value="{id}")
 	@CrossOrigin(origins = {"http://localhost:3000"})
 	public ResponseEntity<String> getComputerSystemDetails(@PathVariable(value = "id", required = true) String id) throws IOException {
 		LOGGER.debug("Get details for the computer system with id {}", id);
-		String detailsStr = "";
+		String detailsStr = "{}";
 		ObjectMapper objectMapper = new ObjectMapper();
 		try (FileInputStream fis = new FileInputStream(resourceLoader.getResource("classpath:json/system-details.json").getFile())) {
 			JsonNode allDetails = objectMapper.readTree(fis);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ComputerSysDataTable from './ComputerSysDataTable';
 import ComputerSysContainer from './ComputerSysContainer';
+import { fetchAllComputerSystems } from '../js/ApiHelper';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { ClipLoader } from 'react-spinners';
 import FontAwesome from 'react-fontawesome';
@@ -26,10 +27,9 @@ class MainContent extends Component {
 	 */
 	componentDidMount() {
 		this.setState({isLoading: true});
-	
-		fetch('http://localhost:8080/api')
-			.then(response => response.json())
-			.then(data => this.setState({status: 'success',computerSystems: data[0].systems, isLoading: false}))
+
+		fetchAllComputerSystems()
+			.then(data => this.setState({status: 'success', computerSystems: data[0].systems, isLoading: false}))
 			.catch(error => this.setState({status: 'error', isLoading: false}));
 	};
 	

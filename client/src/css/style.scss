@@ -54,19 +54,18 @@ html, body {
   }
 }
 
+.loader {
+  text-align: center;
+  .loader-error {
+    padding-top: 50px;
+    padding-bottom: 10px;
+    color: $highlight-color;
+  }
+}
 
 .main-content {
   padding-top: 20px;
   padding-bottom: 50px;
-
-  .loader {
-    text-align: center;
-    .loader-error {
-      padding-top: 50px;
-      padding-bottom: 10px;
-      color: $highlight-color;
-    }
-  }
 
   .pretty-key-value {
     font-size: small;
