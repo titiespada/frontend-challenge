@@ -24,7 +24,7 @@ class MainContent extends Component {
 			isRowSelected: false,
 			row: null
 		};    
-	};
+	}
 
 	/**
 	 * Requests the server to grab the computer systems list.
@@ -35,7 +35,7 @@ class MainContent extends Component {
 		fetchAllComputerSystems()
 			.then(data => this.setState({status: 'success', computerSystems: data[0].systems, isLoading: false}))
 			.catch(error => this.setState({status: 'error', isLoading: false}));
-	};
+	}
 	
 	/**
 	 * Handle the selection of a row in the ComputerSysDataTable component. By transfering this 
@@ -46,7 +46,7 @@ class MainContent extends Component {
 			isRowSelected: isRowSelected,
 			row: row
 		});
-	};
+	}
 
 	render() {
 		const {status, computerSystems, isLoading} = this.state;
@@ -95,7 +95,7 @@ class MainContent extends Component {
 				</Row>
 			</Grid>
 		);
-  }
+  	}
 }
 
 export default MainContent;

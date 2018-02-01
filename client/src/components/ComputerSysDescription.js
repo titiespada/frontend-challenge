@@ -22,7 +22,7 @@ class ComputerSysDescription extends Component {
 				return null;
 			}
 		});
-	};
+	}
 
 	render() {
 		const computerSystem = this.props.data;

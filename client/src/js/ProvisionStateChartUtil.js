@@ -1,6 +1,6 @@
 export function chartColors(idx) {
 	return ['#f0c756','#5fb18b','#ff4955'][idx];
-};
+}
 
 export function getProvisionStateInfo(computerSystems) {
 	var pending = 0;

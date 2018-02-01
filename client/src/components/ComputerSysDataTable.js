@@ -19,14 +19,14 @@ class ComputerSysDataTable extends Component {
 		cell = moment(new Date(cell)).format("YYYY-MM-DD HH:mm");
 		row[formatExtraData] = cell;
 		return ( cell );
-	};
+	}
 
 	/**
 	 * Handle the selection of a row.
 	 */
 	onRowSelect = (row, isSelected, e) => {
 		this.props.callbackFromParent(isSelected, row);
-	};
+	}
 
 	render() {
 		const computerSystems = this.props.data;

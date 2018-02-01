@@ -17,7 +17,7 @@ class ComputerSysMoreDetails extends Component {
 			details: [],
 			isLoading: false
 		};    
-	};
+	}
 
 	/**
 	 * First requests the server to grab the computer system details.
@@ -25,7 +25,7 @@ class ComputerSysMoreDetails extends Component {
 	componentDidMount() {
 		this.setState({isLoading: true});
 		this.getComputerSystemDetails(this.props.data);
-	};
+	}
 
 	/**
 	 * Following requests the server to grab the computer system details.
@@ -35,7 +35,7 @@ class ComputerSysMoreDetails extends Component {
 			this.setState({isLoading: true});
 			this.getComputerSystemDetails(nextProps.data);
 		}
-	};
+	}
 
 	/**
 	 * Fetch the computer system details.
@@ -45,7 +45,7 @@ class ComputerSysMoreDetails extends Component {
 		fetchComputerSystemDetails(id)
 			.then(data => this.setState({status: 'success', details: data, isLoading: false}))
 			.catch(error => this.setState({status: 'error', details: [], isLoading: false}));
-	};
+	}
 
 	/**
 	 * Render some of the details
@@ -61,7 +61,7 @@ class ComputerSysMoreDetails extends Component {
 				return null;
 			}
 		});
-	};
+	}
 
 	render() {
 		const {status, details, isLoading} = this.state;

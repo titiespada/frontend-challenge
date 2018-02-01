@@ -17,7 +17,7 @@ class PrettyKeyValue extends Component {
 		return key.toLowerCase().split(' ').map(function(word) {
 			return word[0].toUpperCase() + word.substr(1);
 		}).join(' ');
-	};
+	}
 
 	/**
 	 * Render the key:value pairs into more readable HTML format
@@ -61,7 +61,7 @@ class PrettyKeyValue extends Component {
 				</Row>
 			);
 		}
-	};
+	}
 
 	render() {
 		const key = this.props.dataKey;
