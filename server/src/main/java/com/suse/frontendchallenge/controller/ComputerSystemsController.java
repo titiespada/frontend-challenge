@@ -1,7 +1,7 @@
 package com.suse.frontendchallenge.controller;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
 
 import org.slf4j.Logger;
@@ -38,12 +38,12 @@ public class ComputerSystemsController {
 	private static final String[] STATES = {"pending", "running", "stopped"};
 
 	@GetMapping
-	@CrossOrigin(origins = {"http://localhost:3000"})
+	@CrossOrigin(origins = {"http://localhost:3000", "https://computer-systems-ui.herokuapp.com"})
 	public ResponseEntity<String> getComputerSystems() throws IOException {
 		String detailsStr = "{}";
 		ObjectMapper objectMapper = new ObjectMapper();
-		try (FileInputStream fis = new FileInputStream(resourceLoader.getResource("classpath:json/systems-long-list.json").getFile())) {
-			JsonNode allDetails = objectMapper.readTree(fis);
+		try (InputStream is = resourceLoader.getResource("classpath:json/systems-long-list.json").getInputStream()) {
+			JsonNode allDetails = objectMapper.readTree(is);
 			for (JsonNode node: allDetails.get(0).get("systems")) {
 				((ObjectNode) node).put("provision_state_id", generateRandomState());
 			}
@@ -58,13 +58,13 @@ public class ComputerSystemsController {
 	}
 
 	@GetMapping(value="{id}")
-	@CrossOrigin(origins = {"http://localhost:3000"})
+	@CrossOrigin(origins = {"http://localhost:3000", "https://computer-systems-ui.herokuapp.com"})
 	public ResponseEntity<String> getComputerSystemDetails(@PathVariable(value = "id", required = true) String id) throws IOException {
 		LOGGER.debug("Get details for the computer system with id {}", id);
 		String detailsStr = "{}";
 		ObjectMapper objectMapper = new ObjectMapper();
-		try (FileInputStream fis = new FileInputStream(resourceLoader.getResource("classpath:json/system-details.json").getFile())) {
-			JsonNode allDetails = objectMapper.readTree(fis);
+		try (InputStream is = resourceLoader.getResource("classpath:json/system-details.json").getInputStream()) {
+			JsonNode allDetails = objectMapper.readTree(is);
 			if (allDetails.has("return")) {
 				JsonNode returnNode = allDetails.get("return");
 				if (returnNode.has(0)) {

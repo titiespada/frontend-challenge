@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:8080/api/';
+const API_URL = (process.env.REACT_APP_STAGE === 'dev') 
+    ? 'http://localhost:8080/api/'
+    : 'https://computer-systems-api.herokuapp.com/api/';
 
 export function fetchAllComputerSystems() {
 	return fetch(API_URL)
