@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import Websocket from 'react-websocket';
 import ComputerSysDataTable from './ComputerSysDataTable';
 import ComputerSysContainer from './ComputerSysContainer';
-import { fetchAllComputerSystems } from '../js/ApiHelper';
+import { WS_URL, fetchAllComputerSystems } from '../js/ApiHelper';
 import { Grid, Row, Col } from 'react-bootstrap';
 import { ClipLoader } from 'react-spinners';
 import { chartColors, getProvisionStateInfo } from '../js/ProvisionStateChartUtil';
@@ -22,7 +23,8 @@ class MainContent extends Component {
 			computerSystems: [],
 			isLoading: false,
 			isRowSelected: false,
-			row: null
+			row: null,
+			updateSelectedRow: false
 		};    
 	}
 
@@ -44,12 +46,22 @@ class MainContent extends Component {
 	onRowSelectCallback = (isRowSelected, row) => {
 		this.setState({
 			isRowSelected: isRowSelected,
-			row: row
+			row: row,
+			updateSelectedRow: false
 		});
 	}
 
+	handleData(data) {
+		const results = JSON.parse(data);
+		if (this.state.isRowSelected) {
+			this.setState({computerSystems: results[0].systems, updateSelectedRow: true});
+		} else {
+			this.setState({computerSystems: results[0].systems, updateSelectedRow: false});
+		}
+	}
+
 	render() {
-		const {status, computerSystems, isLoading} = this.state;
+		const {status, computerSystems, isLoading, updateSelectedRow} = this.state;
 
 		if (isLoading) {
 			return (
@@ -78,6 +90,7 @@ class MainContent extends Component {
 
 		return (
 			<Grid bsClass="main-content">
+				<Websocket url={WS_URL} onMessage={this.handleData.bind(this)}/>
 				<Row>
 					<Col className="provision-state-chart">
 						<PieChart data={getProvisionStateInfo(computerSystems)} width={450} height={400} radius={150} innerRadius={90} sectorBorderColor="white" colors={chartColors} />
@@ -85,7 +98,7 @@ class MainContent extends Component {
 				</Row>
 				<Row>
 					<Col mdOffset={1} md={10}>
-						<ComputerSysDataTable data={computerSystems} callbackFromParent={this.onRowSelectCallback} />
+						<ComputerSysDataTable data={computerSystems} callbackFromParent={this.onRowSelectCallback} updateSelectedRow={updateSelectedRow} />
 					</Col>
 				</Row>
 				<Row>

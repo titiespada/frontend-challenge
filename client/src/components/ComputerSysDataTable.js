@@ -9,6 +9,19 @@ import '../css/style.css';
  */
 class ComputerSysDataTable extends Component {
 
+	componentDidUpdate() {
+		if (this.props.updateSelectedRow) {
+			var selectedRowKey = this.table.state.selectedRowKeys[0];
+			this.table.state.data.some((r) => {
+				if (r.id === selectedRowKey) {
+					this.props.callbackFromParent(true, r);
+					return true;
+				}
+				return false;
+			});
+		}
+	}
+	
 	/**
 	 * Format a Date element from the datatable.
 	 * @param string cell 
@@ -60,6 +73,7 @@ class ComputerSysDataTable extends Component {
 
 	return (
 			<BootstrapTable
+				ref={ node => this.table = node }
 				data={computerSystems}
 				options={tableOptions}
 				selectRow={selectRowProp}
