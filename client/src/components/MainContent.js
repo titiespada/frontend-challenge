@@ -32,9 +32,9 @@ class MainContent extends Component {
 	componentDidMount() {
 		this.setState({isLoading: true});
 
-		fetchAllComputerSystems()
-			.then(data => this.setState({status: 'success', computerSystems: data[0].systems, isLoading: false}))
-			.catch(error => this.setState({status: 'error', isLoading: false}));
+		fetchAllComputerSystems(
+			(data) => this.setState({status: 'success', computerSystems: data[0].systems, isLoading: false}),
+			(error) => this.setState({status: 'error', isLoading: false}));
 	}
 	
 	/**

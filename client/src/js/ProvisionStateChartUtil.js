@@ -6,7 +6,7 @@ export function getProvisionStateInfo(computerSystems) {
 	var pending = 0;
 	var running = 0;
 	var stopped = 0;
-	computerSystems.forEach(function (computerSystem) {
+	computerSystems.forEach( computerSystem => {
 		if (computerSystem.provision_state_id === 'pending') {
 			pending++;
 		} else if (computerSystem.provision_state_id === 'running') {
