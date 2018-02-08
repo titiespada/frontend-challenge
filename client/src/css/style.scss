@@ -22,6 +22,14 @@ html, body {
   border-radius: 0;
   background-image: none;
 
+  .navigation-link>a:hover {
+    padding-bottom: 12px;
+    border-bottom: 3px solid $highlight-color;
+    background: #333;
+    color: #fafafa;
+    cursor: pointer;
+  }
+
   .brand-link {
     display: inline-block;
     color: $nav-bar-text-color !important;
@@ -66,6 +74,11 @@ html, body {
 .main-content {
   padding-top: 20px;
   padding-bottom: 50px;
+
+  .last-update-info {
+    font-size: small;
+    text-align: right;
+  }
 
   .provision-state-chart {
     text-align: center;

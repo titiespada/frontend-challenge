@@ -17,6 +17,7 @@
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",
     "react-scripts": "1.1.0",
+    "react-scroll": "^1.7.6",
     "react-spinners": "^0.2.5",
     "react-websocket": "^2.0.0"
   },

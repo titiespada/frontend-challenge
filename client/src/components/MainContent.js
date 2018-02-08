@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import LoadingSpinner from './LoadingSpinner';
+import SomethingWentWrongError from './SomethingWentWrongError';
 import Websocket from 'react-websocket';
 import ComputerSysDataTable from './ComputerSysDataTable';
 import ComputerSysContainer from './ComputerSysContainer';
 import { WS_URL, fetchAllComputerSystems } from '../js/ApiHelper';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { ClipLoader } from 'react-spinners';
 import { chartColors, getProvisionStateInfo } from '../js/ProvisionStateChartUtil';
 import rd3 from 'rd3';
-import FontAwesome from 'react-fontawesome';
-import 'font-awesome/css/font-awesome.css';
-import '../css/style.css';
+import moment from 'moment';
 
 const PieChart = rd3.PieChart;
 
@@ -53,59 +52,52 @@ class MainContent extends Component {
 
 	handleData(data) {
 		const results = JSON.parse(data);
+		var lastUpdate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
 		if (this.state.isRowSelected) {
-			this.setState({computerSystems: results[0].systems, updateSelectedRow: true});
+			this.setState({computerSystems: results[0].systems, updateSelectedRow: true, lastUpdate: lastUpdate});
 		} else {
-			this.setState({computerSystems: results[0].systems, updateSelectedRow: false});
+			this.setState({computerSystems: results[0].systems, updateSelectedRow: false, lastUpdate: lastUpdate});
 		}
 	}
 
 	render() {
-		const {status, computerSystems, isLoading, updateSelectedRow} = this.state;
+		const {status, computerSystems, isLoading, updateSelectedRow, lastUpdate} = this.state;
 
+		let pageContent = null;
 		if (isLoading) {
-			return (
-				<Grid bsClass="main-content">
-					<Row>
-						<Col className="loader">
-							<ClipLoader color={'#34b7b6'} size={100} loading={isLoading} />
+			pageContent = <LoadingSpinner isLoading={isLoading} />;
+		} else if (status === 'success') {
+			pageContent =
+				<div>
+					<Row name="pieChart">
+						<Col mdOffset={1} md={10} className="last-update-info">
+							<strong>Last update: </strong>{lastUpdate}
 						</Col>
 					</Row>
-				</Grid>
-			);
-		}
-		if (status === 'error') {
-			return (
-				<Grid bsClass="main-content">
+					<Websocket url={WS_URL} onMessage={this.handleData.bind(this)} reconnect={true}/>
 					<Row>
-						<Col className="loader">
-							<FontAwesome className="loader-error" name='exclamation-circle' size='5x' />
-							<br/>
-							<strong>Oops! Something went wrong.</strong>
+						<Col className="provision-state-chart">
+							<PieChart data={getProvisionStateInfo(computerSystems)} width={450} height={400} radius={150} innerRadius={90} sectorBorderColor="white" colors={chartColors} />
 						</Col>
 					</Row>
-				</Grid>
-			);
+					<Row name="dataTable">
+						<Col mdOffset={1} md={10}>
+							<ComputerSysDataTable data={computerSystems} callbackFromParent={this.onRowSelectCallback} updateSelectedRow={updateSelectedRow} />
+						</Col>
+					</Row>
+					<Row name="moreInfo">
+						<Col mdOffset={1} md={10}>
+							{this.state.isRowSelected ? <ComputerSysContainer data={this.state.row} /> : <strong>Select a computer system from the above table.</strong>}
+						</Col>
+					</Row>
+				</div>;
+		} else {
+			pageContent = <SomethingWentWrongError />;
 		}
 
 		return (
-			<Grid bsClass="main-content">
-				<Websocket url={WS_URL} onMessage={this.handleData.bind(this)}/>
-				<Row>
-					<Col className="provision-state-chart">
-						<PieChart data={getProvisionStateInfo(computerSystems)} width={450} height={400} radius={150} innerRadius={90} sectorBorderColor="white" colors={chartColors} />
-					</Col>
-				</Row>
-				<Row>
-					<Col mdOffset={1} md={10}>
-						<ComputerSysDataTable data={computerSystems} callbackFromParent={this.onRowSelectCallback} updateSelectedRow={updateSelectedRow} />
-					</Col>
-				</Row>
-				<Row>
-					<Col mdOffset={1} md={10}>
-						{this.state.isRowSelected ? <ComputerSysContainer data={this.state.row} /> : <strong>Select a computer system from the above table.</strong>}
-					</Col>
-				</Row>
+			<Grid bsClass="main-content" id="mainContent">
+				{pageContent}
 			</Grid>
 		);
   	}

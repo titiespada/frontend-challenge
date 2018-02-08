@@ -3,7 +3,9 @@ import logo from '../static/logo.svg';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
-import '../css/style.css';
+import Scroll from 'react-scroll';
+
+var Link = Scroll.Link;
 
 /**
  * Create the navigation bar.
@@ -20,6 +22,11 @@ const NavigationBar = () =>
 			<Navbar.Toggle />
 		</Navbar.Header>
 		<Navbar.Collapse>
+			<ul className="nav navbar-nav">
+				<li className="navigation-link"><Link to="pieChart" spy={true} smooth={true} duration={250} offset={-60}>Pie Chart</Link></li>
+				<li className="navigation-link"><Link to="dataTable" spy={true} smooth={true} duration={250} offset={-60}>Data Table</Link></li>
+				<li className="navigation-link"><Link to="moreInfo" spy={true} smooth={true} duration={250} offset={-60}>More Info</Link></li>
+			</ul>
 			<Nav pullRight>
 				<NavItem eventKey={1} href="https://github.com/titiespada/frontend-challenge" className="github">  
 					Git Hub

@@ -1,6 +1,5 @@
 import React from 'react';
 import { PageHeader } from 'react-bootstrap';
-import '../css/style.css';
 
 /**
  * Display a simple Header information.
